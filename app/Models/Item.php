@@ -9,7 +9,8 @@ class Item extends Model
     protected $fillable = [
         'user_id',
         'name',
-        'cost'
+        'cost',
+        'stock'
     ];
 
     public function user()
@@ -20,5 +21,10 @@ class Item extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function transactions()
+    {
+        return $this->belongsToMany(Transaction::class);
     }
 }

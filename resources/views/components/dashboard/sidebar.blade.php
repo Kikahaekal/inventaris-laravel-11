@@ -24,7 +24,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="list-group-item"><a href="/transaction">Transaction</a></li>
+            <li class="list-group-item"><a href="/transactions">Transaction</a></li>
         </ul>
     </div>
 </div>

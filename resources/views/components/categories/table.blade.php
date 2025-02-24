@@ -1,3 +1,21 @@
+@if(session('success_edit'))
+<script>
+    Swal.fire({
+        title: "Sucess!",
+        text: "{{ session('success_edit') }}",
+        icon: "success"
+    });
+</script>
+@endif
+@if(session('success_delete'))
+<script>
+    Swal.fire({
+        title: "Sucess!",
+        text: "{{ session('success_delete') }}",
+        icon: "success"
+    });
+</script>
+@endif
 <table class="table table-responsive table-bordered">
     <thead>
         <tr class="text-center">

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->string("buyer_name");
+            $table->integer("buy_amount");
             $table->integer("transaction_amount");
             $table->text("transaction_detail");
             $table->timestamps();

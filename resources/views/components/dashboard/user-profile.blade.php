@@ -4,7 +4,7 @@
         <i class="fa-regular fa-circle-user fs-2"></i>
     </span>
     <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><a class="dropdown-item" href="/user-profile/{{ Auth::user()->id }}">Profile</a></li>
         <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
     </ul>
 </div>

@@ -7,7 +7,7 @@
             <h6>{{ $card_subtitle }}</h6>
         </div>
         <div class="card-text">
-            <h3>{{ $card_text }}</h3>
+            <h3>{{ $card_text }}: <span class="text-primary">{{ $card_value }}</span></h3>
         </div>
     </div>
 </div>

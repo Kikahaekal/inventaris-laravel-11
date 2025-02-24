@@ -43,7 +43,7 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
 
-        return back();
+        return back()->with('success_add', 'Data has been added');
     }
 
     /**
@@ -73,7 +73,7 @@ class CategoryController extends Controller
 
         $category->update(['name' => $request->name]);
 
-        return back();
+        return back()->with('success_edit', 'Data has been edited');
     }
 
     /**
@@ -83,6 +83,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return back();
+        return back()->with('success_delete', 'Data has been deleted');
     }
 }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->string('name');
+            $table->integer('stock');
             $table->integer('cost');
             $table->timestamps();
         });

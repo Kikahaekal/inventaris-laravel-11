@@ -3,6 +3,7 @@
         <th class="w-number">No</th>
         <th>Name</th>
         <th>Cost</th>
+        <th>Stock</th>
         <th>Category</th>
         <th>Action</th>
     </tr>
@@ -11,6 +12,7 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $item->name }}</td>
             <td>Rp {{ number_format($item->cost, 2, ',', '.') }}</td>
+            <td>{{ $item->stock }}</td>
             <td>
                 {{ implode(', ', $item->categories->pluck('name')->toArray()) }}
             </td>
@@ -41,6 +43,8 @@
                                 <input type="text" name="name" id="name" class="form-control mb-2" value="{{ $item->name }}">
                                 <label for="cost">Cost</label>
                                 <input type="number" name="cost" id="cost" class="form-control mb-2" value="{{ $item->cost }}">
+                                <label for="stock">Stock</label>
+                                <input type="number" name="stock" id="stock" class="form-control mb-2" value="{{ $item->stock }}">
                                 <label for="categoriesAddModal">Categories</label>
                                 <select name="categories[]" class="form-control" id="categoriesEditModal" multiple>
                                     @foreach ($categories as $category)
@@ -58,6 +62,6 @@
             </div>
         </tr>
     @empty
-        <td colspan="3" class="text-center">No data</td>
+        <td colspan="6" class="text-center">No data</td>
     @endforelse
 </table>

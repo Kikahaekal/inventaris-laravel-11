@@ -17,6 +17,8 @@
                         <input type="text" name="name" id="name" class="form-control mb-2">
                         <label for="cost">Cost</label>
                         <input type="number" name="cost" id="cost" class="form-control mb-2">
+                        <label for="stock">Stock</label>
+                        <input type="number" name="stock" id="stock" class="form-control mb-2">
                         <label for="categoriesAddModal">Categories</label>
                         <select name="categories[]" class="form-control" id="categoriesAddModal" multiple>
                             @foreach ($categories as $item)

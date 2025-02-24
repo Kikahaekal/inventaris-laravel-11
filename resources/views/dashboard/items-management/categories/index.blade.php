@@ -1,6 +1,15 @@
 @extends('dashboard.layout')
 
 @section('content')
+@if(session('success_add'))
+<script>
+    Swal.fire({
+        title: "Sucess!",
+        text: "{{ session('success_add') }}",
+        icon: "success"
+    });
+</script>
+@endif
     @include('components.dashboard.im-header', [
         "im_title" => "Categories"
     ])

@@ -1,6 +1,15 @@
 @extends('authentication.layout')
 
 @section('content')
+@if(session('failed_register'))
+<script>
+    Swal.fire({
+        title: "Failed!",
+        text: "{{ session('failed_register') }}",
+        icon: "error"
+    });
+</script>
+@endif
     <form action="/create_user" method="post">
         @csrf
         <h2 class="text-center">Register</h2>

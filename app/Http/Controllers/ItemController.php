@@ -14,7 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get(['id', 'name']);
+        $categories = Category::where('user_id', Auth::user()->id)->orderBy('id', 'asc')->get(['id', 'name']);
         $items = Item::with('categories')->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
         
         return view('dashboard.items-management.items.index', [
@@ -45,12 +45,13 @@ class ItemController extends Controller
         $result = Item::create([
             'user_id' => Auth::user()->id,
             'name' => $request->name,
-            'cost' => $request->cost
+            'cost' => $request->cost,
+            'stock' => $request->stock
         ]);
 
         $result->categories()->attach($request->categories);
 
-        return back();
+        return back()->with('success_add', 'Data has been added');
     }
 
     /**
@@ -84,12 +85,13 @@ class ItemController extends Controller
         $item->update([
             'user_id' => Auth::user()->id,
             'name' => $request->name,
-            'cost' => $request->cost
+            'cost' => $request->cost,
+            'stock' => $request->stock
         ]);
 
         $item->categories()->sync($request->categories);
 
-        return back();
+        return back()->with('success_edit', 'Data has been edited');
     }
 
     /**
@@ -99,6 +101,6 @@ class ItemController extends Controller
     {
         $item->delete();
 
-        return back();
+        return back()->with('success_delete', 'Data has been deleted');
     }
 }
