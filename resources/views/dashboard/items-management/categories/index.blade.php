@@ -24,4 +24,5 @@
             </div>
         </div>
     </div>
+    @include('components.categories.table')
 @endsection

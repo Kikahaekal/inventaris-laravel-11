@@ -5,3 +5,7 @@ a {
 .dropdown-toggle::after {
     display: none !important;
 }
+
+.w-number{
+    width: 50px;
+}

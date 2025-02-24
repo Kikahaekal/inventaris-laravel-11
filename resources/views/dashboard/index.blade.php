@@ -7,12 +7,12 @@
     @include('components.dashboard.card', [
         "card_title" => "Total Items",
         "card_subtitle" => "Information about total items",
-        "card_text" => "Total Items: 0"
+        "card_text" => "Total Items: $total_items"
     ])
     @include('components.dashboard.card', [
         "card_title" => "Total Categories",
         "card_subtitle" => "Information about total categories",
-        "card_text" => "Total Categories: 0"
+        "card_text" => "Total Categories: $total_category"
     ])
     @include('components.dashboard.card', [
         "card_title" => "Total Transactions",

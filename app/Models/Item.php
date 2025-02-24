@@ -7,17 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     protected $fillable = [
+        'user_id',
         'name',
         'cost'
     ];
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function categories()
     {
-        $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class);
     }
 }

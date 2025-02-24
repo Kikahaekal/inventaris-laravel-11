@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -12,9 +14,12 @@ class ItemController extends Controller
      */
     public function index()
     {
+        $categories = Category::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get(['id', 'name']);
+        $items = Item::with('categories')->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+        
         return view('dashboard.items-management.items.index', [
             'title' => 'Items'
-        ]);
+        ], compact('categories', 'items'));
     }
 
     /**
@@ -30,7 +35,22 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'cost' => 'required',
+            'categories' => 'required|array',
+            'categories.*' => 'exists:categories,id'
+        ]);
+
+        $result = Item::create([
+            'user_id' => Auth::user()->id,
+            'name' => $request->name,
+            'cost' => $request->cost
+        ]);
+
+        $result->categories()->attach($request->categories);
+
+        return back();
     }
 
     /**
@@ -54,7 +74,22 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'cost' => 'required',
+            'categories' => 'required|array',
+            'categories.*' => 'exists:categories,id'
+        ]);
+
+        $item->update([
+            'user_id' => Auth::user()->id,
+            'name' => $request->name,
+            'cost' => $request->cost
+        ]);
+
+        $item->categories()->sync($request->categories);
+
+        return back();
     }
 
     /**
@@ -62,6 +97,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+
+        return back();
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -12,9 +14,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $categories = Category::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get(['id', 'name']);
+
         return view('dashboard.items-management.categories.index', [
             'title' => 'Categories'
-        ]);
+        ], compact('categories'));
     }
 
     /**
@@ -35,6 +39,7 @@ class CategoryController extends Controller
         ]);
 
         Category::create([
+            'user_id' => Auth::user()->id,
             'name' => $request->name
         ]);
 
@@ -62,7 +67,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $category->update(['name' => $request->name]);
+
+        return back();
     }
 
     /**
@@ -70,6 +81,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return back();
     }
 }

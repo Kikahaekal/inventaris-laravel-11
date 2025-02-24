@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,9 +63,12 @@ class UserController extends Controller
 
     public function dashboard()
     {
+        $total_items = count(Item::where('user_id', Auth::user()->id)->get());
+        $total_category = count(Category::where('user_id', Auth::user()->id)->get());
+
         return view('dashboard.index', [
             'title' => 'Dashboard'
-        ]);
+        ], compact('total_category', 'total_items'));
     }
 
     public function logout()
