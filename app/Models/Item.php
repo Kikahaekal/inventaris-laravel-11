@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    protected $guard = [
-        'id'
+    protected $fillable = [
+        'name',
+        'cost'
     ];
 
     public function user()

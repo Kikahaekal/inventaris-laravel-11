@@ -1,6 +1,6 @@
-<div class="col-md-3 mt-3">
+<div class="col-md-4 mt-3">
     <div class="card p-2">
-        <div class="card-title">
+        <div class="card-title text-primary">
             <h5>{{ $card_title }}</h5>
         </div>
         <div class="card-subtitle mb-3 text-body-secondary">

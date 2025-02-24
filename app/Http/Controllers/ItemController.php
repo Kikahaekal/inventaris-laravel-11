@@ -12,7 +12,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.items-management.items.index', [
+            'title' => 'Items'
+        ]);
     }
 
     /**

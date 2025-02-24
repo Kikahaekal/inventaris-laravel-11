@@ -12,7 +12,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('dashboard.items-management.categories.index', [
+            'title' => 'Categories'
+        ]);
     }
 
     /**
@@ -28,7 +30,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' =>'required'
+        ]);
+
+        Category::create([
+            'name' => $request->name
+        ]);
+
+        return back();
     }
 
     /**

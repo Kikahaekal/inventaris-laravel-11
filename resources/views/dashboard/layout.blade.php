@@ -24,7 +24,10 @@
 </head>
 
 <body>
-    @include('components.dashboard.sidebar')
+    <div class="d-flex justify-content-between">
+        @include('components.dashboard.sidebar')
+        @include('components.dashboard.user-profile')
+    </div>
     <div class="container mt-2">
         @yield('content')
     </div>

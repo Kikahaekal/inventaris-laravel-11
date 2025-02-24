@@ -6,12 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $guard = [
-        'id'
+    protected $fillable = [
+        'name'
     ];
 
     public function items() 
     {
         $this->belongsToMany(Item::class);
+    }
+
+    public function user()
+    {
+        $this->belongsTo(User::class);
     }
 }

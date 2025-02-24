@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         $this->hasMany(Item::class);
     }
+
+    public function categories()
+    {
+        $this->hasMany(Category::class);
+    }
 }
